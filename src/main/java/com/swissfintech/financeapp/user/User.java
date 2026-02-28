@@ -5,12 +5,6 @@ import com.swissfintech.financeapp.company.Company;
 
 import jakarta.persistence.*;
 
-enum Role {
-    ADMIN,
-    ACCOUNTANT,
-    USER
-}
-
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(name = "uk_users_email_company", columnNames = { "email", "company_id" })
@@ -28,7 +22,7 @@ public class User extends BaseEntity {
     private String passwordHash;
 
     @Column(name = "first_name", length = 100)
-    private String fisrtName;
+    private String firstName;
 
     @Column(name = "last_name", length = 100)
     private String lastName;

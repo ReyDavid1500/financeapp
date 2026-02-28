@@ -40,4 +40,8 @@ public class Company extends BaseEntity {
     public String getRegistrationNumber() {
         return registrationNumber;
     }
+
+    public String getCountry() { return country; }
+
+    public String getCurrency() { return currency; }
 }
