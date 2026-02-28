@@ -1,11 +1,8 @@
 package com.swissfintech.financeapp.common.base;
 
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity {
@@ -13,7 +10,22 @@ public abstract class BaseEntity {
     @GeneratedValue
     private UUID id;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
+
+    @Column(name = "updated_at")
     private Instant updatedAt;
+
+    @Column(name = "deleted_at")
     private Instant deletedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 }
